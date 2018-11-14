@@ -22,5 +22,5 @@ from article.views import article_detail, article_list
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
-    path('article/', include('article.urls'))
+    path('article/', include('article.urls'))   
 ]
