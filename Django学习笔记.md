@@ -30,5 +30,18 @@
 
 
 ## 注意
+
 1. `urls.py`可以写在具体的app里面
 2. `__str__`方法可以改变后台管理界面的标题显示
+
+
+## virtualenv的使用方法
+
+1. 创建:`virtualenv <虚拟环境名称>`
+2. 启动:`Scripts/active`
+3. 退出:`deactive`
+4. 激活虚拟环境:[使用虚拟环境 Virtualenv](https://www.zmrenwu.com/post/3/)
+5. linux下通过`source active`的方法激活虚拟环境
+
+
+
