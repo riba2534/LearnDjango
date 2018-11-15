@@ -43,5 +43,10 @@
 4. 激活虚拟环境:[使用虚拟环境 Virtualenv](https://www.zmrenwu.com/post/3/)
 5. linux下通过`source active`的方法激活虚拟环境
 
+## pip一键导出和安装
+1. `pip freeze` 当前环境下安装的所有的库
+2. `pip freeze > requirements.txt`重定向到一个文件
+3. `pip install -r requirements.txt`安装这个文件中的所有库
+
 
 
