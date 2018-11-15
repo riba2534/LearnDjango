@@ -24,7 +24,7 @@ def article_detail(request, article_id):
 
 
 def article_list(request):
-    articles = Article.objects.all()
+    articles = Article.objects.filter(is_deleted=False)# 过滤器，筛选出标记为存在的
     context = {}
     context['articles'] = articles
     return render_to_response('article_list.html', context)

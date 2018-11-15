@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
-from article.views import article_detail, article_list
+#from article.views import article_detail, article_list
 
 
 urlpatterns = [
