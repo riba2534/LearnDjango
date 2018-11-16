@@ -49,4 +49,9 @@
 3. `pip install -r requirements.txt`安装这个文件中的所有库
 
 
+## 常用模板标签
+
+![](https://i.loli.net/2018/11/16/5bee46aece661.png)
+
+![](https://i.loli.net/2018/11/16/5bee476e29e38.png)
 

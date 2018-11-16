@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ blog_type.type_name }}</title>
+</head>
+
+<body>
+    <div>
+        <h1>HPC的博客</h1>
+    </div>
+    <hr>
+    <h3>{{ blog_type.type_name }}</h3>
+    {% for blog in blogs %}
+    <a href="{% url 'blog_detail' blog.pk %}">
+        <h3>{{ blog.title }}</h3>
+    </a>
+    <p>{{ blog.content|truncatechars:50 }}</p>
+    {% empty %}
+    <p>这里啥都没有</p>
+
+    {% endfor %}
+    <p>一共有{{ blogs|length }}篇文章!</p>
+
+
+</body>
+
+</html>
