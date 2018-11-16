@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title%}{% endblock %}</title>
+</head>
+
+<body>
+    <div>
+        <a href="{% url 'home'  %}">
+            <h1>HPC的博客</h1>
+        </a>
+    </div>
+    <hr>
+    {% block content %}
+    {% endblock %}
+
+</body>
+
+</html>

@@ -1,29 +1,18 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>HPCの博客</title>
-</head>
+{% block title%}
+HPCの博客
+{% endblock %}
 
-<body>
-    <div>
-        <h1>HPC的博客</h1>
-    </div>
+{% block content %}
+{% for blog in blogs %}
+<a href="{% url 'blog_detail' blog.pk %}">
+    <h3>{{ blog.title }}</h3>
+</a>
+<p>{{ blog.content|truncatechars:50 }}</p>
+{% empty %}
+<p>这里啥都没有</p>
 
-    <hr>
-    {% for blog in blogs %}
-    <a href="{% url 'blog_detail' blog.pk %}">
-        <h3>{{ blog.title }}</h3>
-    </a>
-    <p>{{ blog.content|truncatechars:50 }}</p>
-    {% empty %}
-    <p>这里啥都没有</p>
-
-    {% endfor %}
-    <p>一共有{{ blogs|length }}篇文章!</p>
-
-
-</body>
-
-</html>
+{% endfor %}
+<p>一共有{{ blogs|length }}篇文章!</p>
+{% endblock %}
