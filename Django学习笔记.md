@@ -55,4 +55,11 @@
 
 ![](https://i.loli.net/2018/11/16/5bee476e29e38.png)
 
-1. `block`的使用
+1. `block`和`endblock`的使用
+2. `extends`引用文件,使用模板页面
+
+## 模板文件设置建议
+
+1. app文件放在app中
+2. project文件放在外面，类似于全局变量
+
