@@ -63,3 +63,7 @@
 1. app文件放在app中
 2. project文件放在外面，类似于全局变量
 
+## CSS美化页面
+
+1. 使用`{% load staticfiles %}`来加载静态文件
+2. 

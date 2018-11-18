@@ -1,11 +1,16 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+
 
 {% block title %}
 HPCの博客
 {% endblock %}
 
-{% block content %}
-<h3>欢迎访问我的网站</h3>
-
+{% block header_extends %}
+<link rel="stylesheet" href="{% static 'home.css' %}">
 {% endblock %}
 
+
+{% block content %}
+<h3 class="home-content">欢迎访问我的网站</h3>
+{% endblock %}
