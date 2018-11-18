@@ -4,6 +4,8 @@
 HPCの博客
 {% endblock %}
 
+{% block nav_blog_active %}active{% endblock %}
+
 {% block content %}
 {% for blog in blogs %}
 <a href="{% url 'blog_detail' blog.pk %}">
