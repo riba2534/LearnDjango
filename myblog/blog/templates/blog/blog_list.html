@@ -25,7 +25,9 @@ HPCの博客
             <h4>博客分类</h4>
             <ul>
                 {% for blog_type in blog_types %}
-                <li><a href="{% url 'blogs_with_type' blog_type.pk %}">{{ blog_type.type_name }}</a></li>
+                <li>
+                    <a href="{% url 'blogs_with_type' blog_type.pk %}">{{ blog_type.type_name }}</a>
+                </li>
                 {% empty %}
                 <li>暂无分类!</li>
                 {% endfor %}
