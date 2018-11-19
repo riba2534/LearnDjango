@@ -1,20 +1,7 @@
-{% extends "base.html" %}
+{% extends "blog/blog_list.html" %}
+{% block title%}{{ blog_type.type_name }}{% endblock %}
 
-{% block title%}
-{{ blog_type.type_name }}
-{% endblock %}
-
-{% block nav_blog_active %}active{% endblock %}
-
-{% block content %}
-<h3>{{ blog_type.type_name }}</h3>
-{% for blog in blogs %}
-<a href="{% url 'blog_detail' blog.pk %}">
-    <h3>{{ blog.title }}</h3>
-</a>
-<p>{{ blog.content|truncatechars:50 }}</p>
-{% empty %}
-<p>这里啥都没有</p>
-{% endfor %}
-<p>一共有{{ blogs|length }}篇文章!</p>
+{% block blog_list_title %}
+分类:{{ blog_type.type_name }}(一共有{{ blogs|length }}篇文章!)
+<a href="{% url 'blog_list' %}">查看全部博客</a>
 {% endblock %}
