@@ -23,5 +23,4 @@ class Blog(models.Model):
         return '<Blog: %s>' % self.title
 
     class Meta:
-        ordering = ['-created_time']#创建时间倒序排序
-        
+        ordering = ['-created_time']  # 创建时间倒序排序
