@@ -66,4 +66,36 @@
 ## CSS美化页面
 
 1. 使用`{% load staticfiles %}`来加载静态文件
-2. 
+
+## `manage.py`的`shell`的使用
+
+1. 进入方法:`python3 manage.py shell`
+    常用的一些方法:
+    ```python
+    from blog.models import Blog
+    from django.contrib.auth.models import User
+    Blog.objects.all()#查看当前博客的所有对象
+    Blog.objects.count()#查看当前博客数量
+    Blog.objects.all().count() #等同上面
+    blog=Blog()#实例化
+    blog_type=BlogType.objects.all()[0]#获取到第一个分类
+    user=User.objects.all()[0] #获取到第一个用户
+    for i in range(1,31):#利用for循环批量添加博客
+        blog=Blog()
+        blog.title='for %s' % i
+        blog.content='这是第%s篇文章！' % i
+        blog.blog_type=blog_type
+        blog.author=user
+        blog.save()
+    ```
+2. 分页器
+   ```python
+   from django.core.paginator import Paginator#引入分页器
+   from blog.models import Blog#引入模型
+   blogs=Blog.objects.all()#得到模型
+   paginator=Paginator(blogs,10)#分页器进行分页
+   paginator.num_pages#得到页的数量
+   paginator.page_range#得到具体页码
+   page1=paginator.page(1)#定义一个第一页,可以用dir(page1)查看里面的具体方法
+   page1.object_list#得到当前页的具体对象
+   ```

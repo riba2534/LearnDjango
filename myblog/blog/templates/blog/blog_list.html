@@ -16,9 +16,11 @@ HPCの博客
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-md-9 col-1g-10">
             <div class="panel panel-default">
-                <div class="panel-heading"> {% block blog_list_title %}博客列表(一共有{{ blogs|length }}篇文章!){% endblock %}</div>
+                <div class="panel-heading">
+                    {% block blog_list_title %}博客列表(一共有{{page_of_blogs.paginator.count}}篇文章!){% endblock %}
+                </div>
                 <div class="panel-body">
-                    {% for blog in blogs %}
+                    {% for blog in page_of_blogs.object_list %}
                     <div class="blog">
                         <a href="{% url 'blog_detail' blog.pk %}">
                             <h3>{{ blog.title }}</h3>
@@ -37,9 +39,39 @@ HPCの博客
                     <div class="blog">
                         <h3>这里啥都没有,博主太懒了，等他写吧!</h3>
                     </div>
-
                     {% endfor %}
                 </div>
+            </div>
+            <div>
+                <!-- 分页功能https://v3.bootcss.com/components/#pagination -->
+                <ul class="pagination">
+                    <li>
+                        <!-- 存在上一页 -->
+                        {% if page_of_blogs.has_previous %}
+                        <a href="?page={{ page_of_blogs.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                        {% else %}
+                        <span aria-hidden="true">&laquo;</span>
+                        {% endif %}
+
+                    </li>
+                    <!-- 有页码的情况 -->
+                    {% for page_num in page_of_blogs.paginator.page_range %}
+                    <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+                    {% endfor %}
+
+                    <li>
+                        <!-- 存在下一页 -->
+                        {% if page_of_blogs.has_next %}
+                        <a href="?page={{ page_of_blogs.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                        {% else %}
+                        <span aria-hidden="true">&raquo;</span>
+                        {% endif %}
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="hidden-xs col-sm-4 col-md-3 col-1g-2">
