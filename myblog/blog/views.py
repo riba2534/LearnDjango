@@ -35,6 +35,11 @@ def blog_list(request):
 
 def blog_detail(request, blog_pk):  # 博客内容
     context = {}
+    blog = get_object_or_404(Blog, pk=blog_pk)
+    context['previous_blog'] = Blog.objects.filter(
+        created_time__gt=blog.created_time).last()  # 找到当前博客的上一条
+    context['next_blog'] = Blog.objects.filter(
+        created_time__lt=blog.created_time).first()  # 找到当前博客的下一条
     context['blog'] = get_object_or_404(Blog, id=blog_pk)
     return render_to_response("blog/blog_detail.html", context)
 

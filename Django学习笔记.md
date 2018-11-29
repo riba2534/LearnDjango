@@ -99,3 +99,6 @@
    page1=paginator.page(1)#定义一个第一页,可以用dir(page1)查看里面的具体方法
    page1.object_list#得到当前页的具体对象
    ```
+
+3. filter筛选
+   ![](https://i.loli.net/2018/11/29/5bffd23f91208.png)
