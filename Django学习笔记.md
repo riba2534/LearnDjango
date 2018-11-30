@@ -102,3 +102,9 @@
 
 3. filter筛选
    ![](https://i.loli.net/2018/11/29/5bffd23f91208.png)
+   先进入shell模式:`python3 manage.py shell`
+   ```python
+   from blog.models import Blog
+   Blog.objects.filter(title__icontains='python') #关键字包含
+   Blog.objects.filter(id__in=[1,3,4,23]) # 在...之内
+   ```
