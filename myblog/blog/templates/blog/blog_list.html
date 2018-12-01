@@ -33,7 +33,7 @@ HPCの博客
                             {{ blog.created_time|date:"Y-m-d H:i:s" }}
                         </p>
 
-                        <p>{{ blog.content|truncatechars:120 }}</p>
+                        <p>{{ blog.content|striptags|truncatechars:120 }}</p>
                     </div>
                     {% empty %}
                     <div class="blog">

@@ -108,3 +108,26 @@
    Blog.objects.filter(title__icontains='python') #关键字包含
    Blog.objects.filter(id__in=[1,3,4,23]) # 在...之内
    ```
+4. annotate注释
+   ```python
+   from django.db.models import Count
+   context['blog_types'] = BlogType.objects.annotate(
+        blog_count=Count('blog'))  # 博客分类的对应博客数量,为什么小写?
+   ```
+
+## 使用富文本编辑器
+
+1. 17开始，使用了富文本编辑器,首先`pip3 install django-ckeditor`,其实同时安装了两个库，分别是`django-ckeditor-5.6.1`和`django-js-asset-1.1.0`
+2. 注册应用，在`settings.py`中
+3. 修改`models.py`:
+   ```python
+   from ckeditor.fields import RichTextField
+   content = RichTextField() 
+   ```
+   然后`python3 manage.py makemigrations`和`python3 manage.py migrate`
+
+## 图片上传功能
+
+1. 17课讲的(16:34)，首先安装`pillow`,`pip3 install pillow`
+2. ![](https://i.loli.net/2018/12/01/5c023b82d067b.png)
+   
