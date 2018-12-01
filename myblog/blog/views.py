@@ -1,10 +1,11 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.core.paginator import Paginator  # 引入分页器
 from .models import Blog, BlogType
+from django.db.models import Count
 from django.conf import settings
 
 
-def get_blog_list_common_data(request, blogs_all_list):
+def get_blog_list_common_data(request, blogs_all_list):  # 为了代码复用
     paginator = Paginator(
         blogs_all_list, settings.EACH_PAGE_BLOGS_NUMBER)  # 每10页进行分页
     page_num = request.GET.get('page', 1)  # get获取page的参数
@@ -24,13 +25,21 @@ def get_blog_list_common_data(request, blogs_all_list):
     if page_range[-1] != paginator.num_pages:
         page_range.append(paginator.num_pages)
 
+    # 获取日期对应的博客数量
+    blog_dates = Blog.objects.dates('created_time', 'month', order='DESC')
+    blog_dates_dict = {}
+    for blog_date in blog_dates:
+        blog_count = Blog.objects.filter(created_time__year=blog_date.year,
+                                         created_time__month=blog_date.month).count()
+        blog_dates_dict[blog_date] = blog_count
+
     context = {}
     context['blogs'] = page_of_blogs.object_list
     context['page_of_blogs'] = page_of_blogs
     context['page_range'] = page_range
-    context['blog_types'] = BlogType.objects.all()
-    context['blog_dates'] = Blog.objects.dates(
-        'created_time', 'month', order='DESC')
+    context['blog_types'] = BlogType.objects.annotate(
+        blog_count=Count('blog'))  # 博客分类的对应博客数量,为什么小写?
+    context['blog_dates'] = blog_dates_dict
     return context
 
 
