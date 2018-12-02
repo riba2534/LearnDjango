@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BlogType, Blog
+from .models import BlogType, Blog, ReadNum
 
 
 @admin.register(BlogType)
@@ -9,5 +9,10 @@ class BlogTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ('title', 'blog_type', 'author', 'readed_num',
+    list_display = ('title', 'blog_type', 'author', 'get_read_num',
                     'created_time', 'last_update_time')
+
+
+@admin.register(ReadNum)
+class ReadNumAdmin(admin.ModelAdmin):
+    list_display = ('read_num', 'blog')
