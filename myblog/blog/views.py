@@ -1,8 +1,7 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.core.paginator import Paginator  # 引入分页器
 from .models import Blog, BlogType
-from django.contrib.contenttypes.models import ContentType
-from read_statistics.models import ReadNum
+from read_statistics.utils import read_statistics_once_read
 from django.db.models import Count
 from django.conf import settings
 
@@ -69,16 +68,7 @@ def blogs_with_date(request, year, month):
 
 def blog_detail(request, blog_pk):  # 博客内容
     blog = get_object_or_404(Blog, pk=blog_pk)
-    if not request.COOKIES.get('blog_%s_readed' % blog_pk):
-        ct = ContentType.objects.get_for_model(Blog)
-        # 是否存在相应记录
-        if ReadNum.objects.filter(content_type=ct, object_id=blog.pk).count():
-            readnum = ReadNum.objects.get(content_type=ct, object_id=blog.pk)
-        else:
-            readnum = ReadNum(content_type=ct, object_id=blog.pk)
-
-        readnum.read_num += 1
-        readnum.save()
+    read_cookie_key = read_statistics_once_read(request, blog)
 
     context = {}
     context['previous_blog'] = Blog.objects.filter(
@@ -87,6 +77,5 @@ def blog_detail(request, blog_pk):  # 博客内容
         created_time__lt=blog.created_time).first()  # 找到当前博客的下一条
     context['blog'] = get_object_or_404(Blog, id=blog_pk)
     response = render_to_response("blog/blog_detail.html", context)  # 响应
-    response.set_cookie('blog_%s_readed' %
-                        blog_pk, 'true')  # 设置cookie,有效期为浏览器关闭时
+    response.set_cookie(read_cookie_key, 'true')  # 设置cookie,有效期为浏览器关闭时
     return response
