@@ -1,6 +1,8 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.core.paginator import Paginator  # 引入分页器
-from .models import Blog, BlogType, ReadNum
+from .models import Blog, BlogType
+from django.contrib.contenttypes.models import ContentType
+from read_statistics.models import ReadNum
 from django.db.models import Count
 from django.conf import settings
 
@@ -68,11 +70,13 @@ def blogs_with_date(request, year, month):
 def blog_detail(request, blog_pk):  # 博客内容
     blog = get_object_or_404(Blog, pk=blog_pk)
     if not request.COOKIES.get('blog_%s_readed' % blog_pk):
-        if ReadNum.objects.filter(blog=blog).count():
-            readnum = ReadNum.objects.get(blog=blog)
+        ct = ContentType.objects.get_for_model(Blog)
+        # 是否存在相应记录
+        if ReadNum.objects.filter(content_type=ct, object_id=blog.pk).count():
+            readnum = ReadNum.objects.get(content_type=ct, object_id=blog.pk)
         else:
-            readnum = ReadNum()
-            readnum.blog = blog
+            readnum = ReadNum(content_type=ct, object_id=blog.pk)
+
         readnum.read_num += 1
         readnum.save()
 
