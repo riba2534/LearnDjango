@@ -131,3 +131,11 @@
 1. 17课讲的(16:34)，首先安装`pillow`,`pip3 install pillow`
 2. ![](https://i.loli.net/2018/12/01/5c023b82d067b.png)
    
+
+## 用图表展示数据
+
+网站地址:[highcharts](https://www.highcharts.com/),中文官网:[hcharts](https://www.hcharts.cn/)
+
+教程:[1 分钟上手 Highcharts](https://www.hcharts.cn/docs/start-helloworld)
+
+
