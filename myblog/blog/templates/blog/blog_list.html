@@ -22,9 +22,7 @@ HPCの博客
                 <div class="panel-body">
                     {% for blog in blogs %}
                     <div class="blog">
-                        <a href="{% url 'blog_detail' blog.pk %}">
-                            <h3>{{ blog.title }}</h3>
-                        </a>
+                        <h3><a href="{% url 'blog_detail' blog.pk %}"> {{ blog.title }} </a></h3>
                         <p class="blog-info">
                             <!-- 分类和日期 -->
                             <span class="glyphicon glyphicon-tag"></span>

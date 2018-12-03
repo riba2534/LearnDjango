@@ -12,3 +12,9 @@ div#container{
     max-width: 60em;
 
 }
+
+div.hot_data{
+    text-align: center;
+    margin-top: 2em;
+}
+

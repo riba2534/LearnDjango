@@ -139,3 +139,6 @@
 教程:[1 分钟上手 Highcharts](https://www.hcharts.cn/docs/start-helloworld)
 
 
+## 缓存创建
+
+1. `python3 manage.py createcachetable`
