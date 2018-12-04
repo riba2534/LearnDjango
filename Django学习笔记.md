@@ -142,3 +142,8 @@
 ## 缓存创建
 
 1. `python3 manage.py createcachetable`
+
+## 评论模块
+
+1. 创建评论app,`python3 manage.py startapp comment`
+2. 
