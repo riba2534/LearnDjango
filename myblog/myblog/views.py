@@ -8,6 +8,7 @@ from django.db.models import Sum
 from django.core.cache import cache
 from django.contrib import auth
 from django.urls import reverse
+from .forms import LoginForm
 
 
 def get_7_days_hot_blogs():
@@ -41,13 +42,17 @@ def home(request):
 
 
 def login(request):
-    username = request.POST.get('username', '')
-    password = request.POST.get('password', '')
-    user = auth.authenticate(request, username=username, password=password)
-    referer = request.META.get(
-        'HTTP_REFERER', reverse('home'))  # reverse可以反向解析
-    if user is not None:
-        auth.login(request, user)
-        return redirect(referer)
-    else:
-        return render(request, 'error.html', {'message': '用户名或密码不正确', 'redircet_to': referer})
+    # username = request.POST.get('username', '')
+    # password = request.POST.get('password', '')
+    # user = auth.authenticate(request, username=username, password=password)
+    # referer = request.META.get(
+    #     'HTTP_REFERER', reverse('home'))  # reverse可以反向解析
+    # if user is not None:
+    #     auth.login(request, user)
+    #     return redirect(referer)
+    # else:
+    #     return render(request, 'error.html', {'message': '用户名或密码不正确', 'redircet_to': referer})
+    login_form = LoginForm()
+    context = {}
+    context['login_form'] = login_form
+    return render(request, 'login.html', context)

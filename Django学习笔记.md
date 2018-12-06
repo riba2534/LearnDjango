@@ -146,4 +146,13 @@
 ## 评论模块
 
 1. 创建评论app,`python3 manage.py startapp comment`
-2. 
+
+## Django-form的使用
+
+1. 创建`forms.py`,字段->html input标签，每个字段都有一个适当默认的`widget`类
+代码:
+```python
+from django import forms
+class NameForm(forms.Form):
+    your_name=forms.CharField(label='Your Name',max_length=100)
+```
