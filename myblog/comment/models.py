@@ -12,6 +12,13 @@ class Comment(models.Model):
     text = models.TextField()
     comment_time = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    # 父亲的字段,把外键设置为自己本身
+    parent = models.ForeignKey('self', null=True, on_delete=models.DO_NOTHING)
+    reply_to = models.ForeignKey(User, null=True, on_delete=models.DO_NOTHING)
+    # 同步数据库出现错误
+
+    def __str__(self):
+        return self.text
 
     class Meta:
         ordering = ['-comment_time']

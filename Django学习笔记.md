@@ -195,3 +195,7 @@ python3格式化时间:
 import time
 time.strftime('%Y-%m-%d %H:%M:%S')
 ```
+
+## 多级评论回复设置
+
+使用树结构，对于每一个评论模型，设置它的父亲id.
