@@ -156,3 +156,42 @@ from django import forms
 class NameForm(forms.Form):
     your_name=forms.CharField(label='Your Name',max_length=100)
 ```
+2. 使评论框支持`ckeditor`编辑器,富文本表单
+   ```python
+   from ckeditor.widgets import CKEditorWidget
+   text = forms.CharField(widget=CKEditorWidget(config_name='comment_ckeditor'))
+   ```
+   然后在`settings.py`中设置相应配置.
+   ```python
+   CKEDITOR_CONFIGS = {
+    'comment_ckeditor': {
+        'toolbar': 'custom',
+        'toolbar_custom': [
+            ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'],
+            ["TextColor", "BGColor", 'RemoveFormat'],
+            ['NumberedList', 'BulletedList'],
+            ['Link', 'Unlink'],
+            ["Smiley", "SpecialChar", 'Blockquote'],
+        ],
+        'width': 'auto',
+        'height': '180',
+        'tabSpaces': 4,
+        'removePlugins': 'elementspath',
+        'resize_enabled': False,
+            }
+        }
+   ```
+## ajax异步和jquery
+
+ajax是一种不刷新页面的异步提交方式
+
+jquery选择器:
+```javascript
+$("#comment_form") //id选择器
+$(this)//当前方法的对象
+```
+python3格式化时间:
+```python
+import time
+time.strftime('%Y-%m-%d %H:%M:%S')
+```
