@@ -129,15 +129,14 @@
                 console.log(data);
                 if (data['status'] == 'SUCCESS') {
                     //插入数据
-                    var comment_html = '<div id="root_' + data['pk'] + '" class="comment"><span>' + data['username'] + '</span><span> (' + data['comment_time'] + ')：</span><div id="comment_' + data['pk'] + '">' + data['text'] + '</div><a href="javascript:reply(' + data['pk'] + ');">回复</a></div>';
                     if ($('#reply_comment_id').val() == '0') {
                         // 插入评论
                         var comment_html = '<div id="root_' + data['pk'] + '" class="comment"><span>' + data['username'] + '</span><span> (' + data['comment_time'] + ')：</span><div id="comment_' + data['pk'] + '">' + data['text'] + '</div><a href="javascript:reply(' + data['pk'] + ');">回复</a></div>';
-                        $("#comment_list").prepend(comment_html);
+                        $("#comment_list").prepend(comment_html);//在前面插入
                     } else {
                         // 插入回复
                         var reply_html = '<div class="reply"><span>' + data['username'] + '</span><span> (' + data['comment_time'] + ')</span><span> 回复 </span><span>' + data['reply_to'] + '：</span><div id="comment_' + data['pk'] + '">' + data['text'] + '</div><a href="javascript:reply(' + data['pk'] + ');">回复</a></div>';
-                        $("#root_" + data['root_pk']).append(reply_html);
+                        $("#root_" + data['root_pk']).append(reply_html);//在后面插入
                     }
                     // 清空编辑框内容
                     CKEDITOR.instances["id_text"].setData('');
