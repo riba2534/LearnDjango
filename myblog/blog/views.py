@@ -74,17 +74,16 @@ def blog_detail(request, blog_pk):  # 博客内容
     read_cookie_key = read_statistics_once_read(request, blog)
     blog_content_type = ContentType.objects.get_for_model(blog)
     comments = Comment.objects.filter(
-        content_type=blog_content_type, object_id=blog.pk)
-
+        content_type=blog_content_type, object_id=blog.pk, parent=None)
     context = {}
     context['previous_blog'] = Blog.objects.filter(
         created_time__gt=blog.created_time).last()  # 找到当前博客的上一条
     context['next_blog'] = Blog.objects.filter(
         created_time__lt=blog.created_time).first()  # 找到当前博客的下一条
     context['blog'] = get_object_or_404(Blog, id=blog_pk)
-    context['comments'] = comments
+    context['comments'] = comments.order_by('-comment_time')
     context['comment_form'] = CommentForm(
-        initial={'content_type': blog_content_type.model, 'object_id': blog_pk})
+        initial={'content_type': blog_content_type.model, 'object_id': blog_pk, 'reply_comment_id': 0})
     response = render(request, "blog/blog_detail.html", context)  # 响应
     response.set_cookie(read_cookie_key, 'true')  # 设置cookie,有效期为浏览器关闭时
     return response
