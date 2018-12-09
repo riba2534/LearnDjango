@@ -16,8 +16,8 @@ class Blog(models.Model, ReadNumExpandMethod):
     title = models.CharField(max_length=50)  # 标题
     content = RichTextUploadingField()  # 内容
     blog_type = models.ForeignKey(
-        BlogType, on_delete=models.DO_NOTHING)  # 博客分类，外键
-    author = models.ForeignKey(User, on_delete=models.DO_NOTHING)  # 作者,外键
+        BlogType, on_delete=models.CASCADE)  # 博客分类，外键
+    author = models.ForeignKey(User, on_delete=models.CASCADE)  # 作者,外键
     read_details = GenericRelation(ReadDetail)
     created_time = models.DateTimeField(auto_now_add=True)  # 创建时间
     last_update_time = models.DateTimeField(auto_now=True)  # 最后一次修改时间
@@ -31,4 +31,4 @@ class Blog(models.Model, ReadNumExpandMethod):
 
 # class ReadNum(models.Model):
 #     read_num = models.IntegerField(default=0)  # 阅读数
-#     blog = models.OneToOneField(Blog, on_delete=models.DO_NOTHING)  # 一对一关联博客
+#     blog = models.OneToOneField(Blog, on_delete=models.CASCADE)  # 一对一关联博客
