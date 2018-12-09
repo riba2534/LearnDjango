@@ -27,6 +27,10 @@
                 <li>评论数:{% get_comment_count blog %}</li>
             </ul>
             <div class="blog-content">{{ blog.content|safe }}</div>
+            <div class="like">
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+                0 喜欢
+            </div>
             <div class="blog-more">
                 <p>上一篇：
                     {% if previous_blog %}

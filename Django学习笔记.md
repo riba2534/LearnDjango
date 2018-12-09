@@ -210,3 +210,8 @@ time.strftime('%Y-%m-%d %H:%M:%S')
    - 新建`comment_tags.py`，并在其中写入具体函数,通过`@register.simple_tag`进行注册
    - 注册之后，在具体的模板页面中通过`load`进行引用:`{% load comment_tags %}`，引用的名称为具体进行的py文件的名称
    - 在具体位置嵌入`{% get_comment_count blog %}`,blog为参数名
+
+
+## 点赞功能的设计
+
+1. `ContentType`可以指向任意类型
