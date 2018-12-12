@@ -10,6 +10,7 @@ from django.contrib import auth
 from django.urls import reverse
 from .forms import LoginForm, RegForm
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 
 
 def get_7_days_hot_blogs():
@@ -55,6 +56,18 @@ def login(request):
     context = {}
     context['login_form'] = login_form
     return render(request, 'login.html', context)
+
+
+def login_for_medal(request):
+    login_form = LoginForm(request.POST)
+    data = {}
+    if login_form.is_valid():  # 如果表单提交没问题,当前已经验证过用户名和密码
+        user = login_form.cleaned_data['user']
+        auth.login(request, user)
+        data['status'] = 'SUCCESS'
+    else:
+        data['status'] = 'ERROR'
+    return JsonResponse(data)
 
 
 def register(request):
