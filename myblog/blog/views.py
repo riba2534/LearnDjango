@@ -5,7 +5,6 @@ from read_statistics.utils import read_statistics_once_read
 from django.db.models import Count
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
-from myblog.forms import LoginForm
 
 
 def get_blog_list_common_data(request, blogs_all_list):  # 为了代码复用
@@ -77,7 +76,6 @@ def blog_detail(request, blog_pk):  # 博客内容
     context['next_blog'] = Blog.objects.filter(
         created_time__lt=blog.created_time).first()  # 找到当前博客的下一条
     context['blog'] = get_object_or_404(Blog, id=blog_pk)
-    context['login_form'] = LoginForm()
     response = render(request, "blog/blog_detail.html", context)  # 响应
     response.set_cookie(read_cookie_key, 'true')  # 设置cookie,有效期为浏览器关闭时
     return response

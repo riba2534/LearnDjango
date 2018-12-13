@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'read_statistics',
     'comment',
     'likes',
+    'user',
 
 ]
 
@@ -71,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'user.context_processors.login_modal_form',
             ],
         },
     },
