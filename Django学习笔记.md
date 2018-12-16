@@ -221,3 +221,7 @@ time.strftime('%Y-%m-%d %H:%M:%S')
 ## 目录结构整合一个文件夹
 
 ![](https://i.loli.net/2018/12/13/5c123c9f404be.png)
+
+## 用mysql部署django项目
+
+1. 
