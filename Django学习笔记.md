@@ -224,4 +224,5 @@ time.strftime('%Y-%m-%d %H:%M:%S')
 
 ## 用mysql部署django项目
 
-1. 
+1. 参考博客:[https://www.jianshu.com/p/e13417a8bb7f](https://www.jianshu.com/p/e13417a8bb7f)
+2. 
